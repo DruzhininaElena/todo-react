@@ -12,7 +12,7 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
     const onCompletedClickHandler = () => changeFilter('completed')
 
     return (
-        <div>
+        <div style={{marginTop: '20px', marginBottom: '20px'}}>
             <Button title={'All'}
                     onClick={onAllClickHandler}
                     className={currentFilterStatus === 'all' ? 'active-filter' : ''}

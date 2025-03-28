@@ -1,16 +1,19 @@
 import {FilterValue, Task} from '../App.tsx';
 import {TabsFilter} from './TabsFilter.tsx';
-import {TaskItem} from './TaskItem.tsx';
 import {AddTask} from './AddTask.tsx';
+import {TodolistTitle} from './TodolistTitle.tsx';
+import {Tasks} from './Tasks.tsx';
 
 type Props = {
+    todolistId: string
     title: string
     tasks: Task[]
-    deleteTask: (taskId: string) => void
-    changeFilter: (filterValue: FilterValue) => void
-    createTask: (newTaskTitle: string) => void
-    changeTaskStatus: (isDone: boolean, taskId: string) => void
+    deleteTask: (taskId: string, todolistId: string) => void
+    changeFilter: (filterValue: FilterValue, todolistId: string) => void
+    createTask: (newTaskTitle: string, todolistId: string) => void
+    changeTaskStatus: (isDone: boolean, taskId: string, todolistId: string) => void
     currentFilterStatus: FilterValue
+    deleteTodolist: (todolistId: string) => void
 }
 
 export const TodolistItem = (Props: Props) => {
@@ -18,29 +21,38 @@ export const TodolistItem = (Props: Props) => {
     const {
         title,
         tasks,
+        currentFilterStatus,
+        todolistId,
+
+        deleteTodolist,
         deleteTask,
         changeFilter,
         createTask,
         changeTaskStatus,
-        currentFilterStatus
     } = Props
 
     return (
-        <div>
-            <h3>{title}</h3>
-            <AddTask createTask={createTask}/>
+        <div className={'todolist-item'}>
+            <TodolistTitle
+                title={title}
+                deleteTodolist={() => deleteTodolist(todolistId)}
+            />
+            <TabsFilter
+                currentFilterStatus={currentFilterStatus}
+                changeFilter={(filterValue: FilterValue) => changeFilter(filterValue, todolistId)}
+            />
+            <AddTask
+                createTask={(newTaskTitle: string) => createTask(newTaskTitle, todolistId)}
+            />
             {tasks.length === 0 ? (
                 <p>No tasks in the list</p>
             ) : (
-                <ul>
-                    {tasks.map(task => {
-                        return (
-                            <TaskItem task={task} deleteTask={deleteTask} changeTaskStatus={changeTaskStatus}/>
-                        )
-                    })}
-                </ul>
+                <Tasks
+                    tasks={tasks}
+                    deleteTask={(taskId: string) => deleteTask(taskId, todolistId)}
+                    changeTaskStatus={(isDone: boolean, taskId: string) => changeTaskStatus(isDone, taskId, todolistId)}
+                />
             )}
-            <TabsFilter currentFilterStatus={currentFilterStatus} changeFilter={changeFilter}/>
         </div>
     )
 }

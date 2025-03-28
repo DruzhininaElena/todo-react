@@ -1,3 +1,4 @@
+
 .app {
   padding: 30px;
   display: flex;
@@ -6,6 +7,17 @@
 .app > div {
   margin-right: 50px;
 }
+
+.todolist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #007000;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #c1d5c1;
+}
+
 
 .error {
   border: red 1px solid;
@@ -20,5 +32,18 @@
 }
 
 .is-done {
-  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+
+ul{
+  padding: 0;
+}
+
+li {
+ list-style: none;
+}
+
+button {
+  cursor: pointer;
 }

@@ -19,7 +19,7 @@ export const TaskItem = ({task, deleteTask, changeTaskStatus}: Props) => {
         <li key={task.id} className={task.isDone ? 'is-done' : ''}>
             <input type="checkbox" checked={task.isDone}
                    onChange={changeTaskStatusHandler}/>
-            <span>{task.title}</span>
+            <span style={{marginRight: '5px'}}>{task.title}</span>
             <Button title={'x'} onClick={deleteTaskHandler}/>
         </li>
     );

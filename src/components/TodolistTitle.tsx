@@ -1,14 +1,18 @@
 import {Button} from './Button.tsx';
+import {EditableSpan} from './EditableSpan.tsx';
 
 type Props = {
     title: string
     deleteTodolist: () => void
+    changeTodolistTitle: (title: string) => void
 };
-export const TodolistTitle = ({title, deleteTodolist}: Props) => {
+export const TodolistTitle = ({title, deleteTodolist, changeTodolistTitle}: Props) => {
     return (
-        <h3>
-            {title}
+        <>
+            <h3>
+                <EditableSpan value={title} changeTaskTitle={changeTodolistTitle}/>
+            </h3>
             <Button title={'x'} onClick={deleteTodolist}/>
-        </h3>
+        </>
     );
 };

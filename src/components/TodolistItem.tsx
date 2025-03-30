@@ -1,6 +1,6 @@
 import {FilterValue, Task} from '../App.tsx';
 import {TabsFilter} from './TabsFilter.tsx';
-import {AddTask} from './AddTask.tsx';
+import {CreateItemForm} from './CreateItemForm.tsx';
 import {TodolistTitle} from './TodolistTitle.tsx';
 import {Tasks} from './Tasks.tsx';
 
@@ -14,6 +14,8 @@ type Props = {
     changeTaskStatus: (isDone: boolean, taskId: string, todolistId: string) => void
     currentFilterStatus: FilterValue
     deleteTodolist: (todolistId: string) => void
+    changeTaskTitle: (newTitle: string, todolistId: string, taskId: string) => void
+    changeTodolistTitle: (title: string, todolistId: string) => void
 }
 
 export const TodolistItem = (Props: Props) => {
@@ -29,6 +31,9 @@ export const TodolistItem = (Props: Props) => {
         changeFilter,
         createTask,
         changeTaskStatus,
+        changeTaskTitle,
+        changeTodolistTitle
+
     } = Props
 
     return (
@@ -36,13 +41,14 @@ export const TodolistItem = (Props: Props) => {
             <TodolistTitle
                 title={title}
                 deleteTodolist={() => deleteTodolist(todolistId)}
+                changeTodolistTitle={(title: string) => changeTodolistTitle(title, todolistId)}
             />
             <TabsFilter
                 currentFilterStatus={currentFilterStatus}
                 changeFilter={(filterValue: FilterValue) => changeFilter(filterValue, todolistId)}
             />
-            <AddTask
-                createTask={(newTaskTitle: string) => createTask(newTaskTitle, todolistId)}
+            <CreateItemForm
+                createItem={(newItemTitle: string) => createTask(newItemTitle, todolistId)}
             />
             {tasks.length === 0 ? (
                 <p>No tasks in the list</p>
@@ -51,6 +57,7 @@ export const TodolistItem = (Props: Props) => {
                     tasks={tasks}
                     deleteTask={(taskId: string) => deleteTask(taskId, todolistId)}
                     changeTaskStatus={(isDone: boolean, taskId: string) => changeTaskStatus(isDone, taskId, todolistId)}
+                    changeTaskTitle={(newTitle: string, taskId: string) => changeTaskTitle(newTitle, todolistId, taskId)}
                 />
             )}
         </div>

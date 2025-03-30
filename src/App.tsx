@@ -2,6 +2,7 @@ import './App.css'
 import {TodolistItem} from './components/TodolistItem.tsx';
 import {useState} from 'react';
 import {v1} from 'uuid';
+import {CreateItemForm} from './components/CreateItemForm.tsx';
 
 
 export type Task = {
@@ -88,9 +89,30 @@ export const App = () => {
         )
     }
 
-    const deleteTodolist = (todolistId: string) => {
+    function deleteTodolist(todolistId: string) {
         setTodolists(todolists.filter(tl => tl.id !== todolistId))
         delete tasks[todolistId]
+    }
+
+    function createTodolist(title: string) {
+
+        const todolistId = v1()
+
+        setTodolists([
+            {id: todolistId, title: title, filter: 'all'},
+            ...todolists
+        ])
+        setTasks({...tasks, [todolistId]: []})
+    }
+
+    function changeTaskTitle(title: string, todolistId: string, taskId: string) {
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title} : t)
+        })
+    }
+    function changeTodolistTitle(title: string, todolistId: string) {
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
     }
 
 
@@ -121,12 +143,15 @@ export const App = () => {
                 changeTaskStatus={changeTaskStatus}
                 currentFilterStatus={tl.filter}
                 deleteTodolist={deleteTodolist}
+                changeTaskTitle={changeTaskTitle}
+                changeTodolistTitle={changeTodolistTitle}
             />
         )
     })
 
     return (
         <div className="app">
+            <CreateItemForm createItem={createTodolist}/>
             {!todolists.length ? <h2>No todolists</h2> : todolistsComponents}
         </div>
     )

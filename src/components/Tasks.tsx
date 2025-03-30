@@ -5,9 +5,10 @@ type Props = {
     tasks: Task[]
     deleteTask: (taskId: string) => void
     changeTaskStatus: (isDone: boolean, taskId: string) => void
+    changeTaskTitle: (newTitle: string, taskId: string) => void
 
 };
-export const Tasks = ({tasks, deleteTask, changeTaskStatus}: Props) => {
+export const Tasks = ({tasks, deleteTask, changeTaskStatus, changeTaskTitle}: Props) => {
     return (
         <ul>
             {tasks.map(task => {
@@ -16,6 +17,7 @@ export const Tasks = ({tasks, deleteTask, changeTaskStatus}: Props) => {
                         task={task}
                         deleteTask={((taskId: string) => deleteTask(taskId))}
                         changeTaskStatus={(isDone: boolean, taskId: string) => changeTaskStatus(isDone, taskId)}
+                        changeTaskTitle={(newTitle: string) => changeTaskTitle(newTitle, task.id)}
                     />
                 )
             })}

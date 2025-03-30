@@ -37,7 +37,7 @@ export const TodolistItem = (Props: Props) => {
     } = Props
 
     return (
-        <div className={'todolist-item'}>
+        <div>
             <TodolistTitle
                 title={title}
                 deleteTodolist={() => deleteTodolist(todolistId)}

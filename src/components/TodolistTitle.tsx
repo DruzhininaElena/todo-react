@@ -11,8 +11,8 @@ export const TodolistTitle = ({title, deleteTodolist, changeTodolistTitle}: Prop
         <>
             <h3>
                 <EditableSpan value={title} changeTaskTitle={changeTodolistTitle}/>
+                <Button title={'x'} onClick={deleteTodolist}/>
             </h3>
-            <Button title={'x'} onClick={deleteTodolist}/>
         </>
     );
 };

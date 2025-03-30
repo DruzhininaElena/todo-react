@@ -152,7 +152,7 @@ export const App = () => {
     return (
         <div className="app">
             <CreateItemForm createItem={createTodolist}/>
-            {!todolists.length ? <h2>No todolists</h2> : todolistsComponents}
+            {todolistsComponents}
         </div>
     )
 }

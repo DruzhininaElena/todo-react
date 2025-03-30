@@ -18,6 +18,8 @@ export const EditableSpan = ({value, changeTaskTitle}: Props) => {
     }
     const turnOffEditModeOnEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') setEditMode(false)
+        changeTaskTitle(title)
+
     }
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)

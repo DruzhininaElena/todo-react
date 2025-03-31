@@ -3,6 +3,8 @@ import {TodolistItem} from './components/TodolistItem.tsx';
 import {useState} from 'react';
 import {v1} from 'uuid';
 import {CreateItemForm} from './components/CreateItemForm.tsx';
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 export type Task = {
@@ -49,8 +51,6 @@ export const App = () => {
             {id: v1(), title: 'JS', isDone: true},
             {id: v1(), title: 'ReactJS', isDone: false},
             {id: v1(), title: 'Redux', isDone: false},
-            {id: v1(), title: 'Typescript', isDone: false},
-            {id: v1(), title: 'RTK query', isDone: false},
         ],
         [todolistId_2]: [
             {id: v1(), title: 'Water', isDone: true},
@@ -111,6 +111,7 @@ export const App = () => {
             [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title} : t)
         })
     }
+
     function changeTodolistTitle(title: string, todolistId: string) {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
     }
@@ -132,27 +133,58 @@ export const App = () => {
         }
 
         return (
-            <TodolistItem
-                key={tl.id}
-                todolistId={tl.id}
-                title={tl.title}
-                tasks={filteredTasks()}
-                deleteTask={deleteTask}
-                changeFilter={changeFilter}
-                createTask={createTask}
-                changeTaskStatus={changeTaskStatus}
-                currentFilterStatus={tl.filter}
-                deleteTodolist={deleteTodolist}
-                changeTaskTitle={changeTaskTitle}
-                changeTodolistTitle={changeTodolistTitle}
-            />
+            <Grid key={tl.id}>
+                <Paper sx={{p: '10px 20px'}}>
+                    <TodolistItem
+                        todolistId={tl.id}
+                        title={tl.title}
+                        tasks={filteredTasks()}
+                        deleteTask={deleteTask}
+                        changeFilter={changeFilter}
+                        createTask={createTask}
+                        changeTaskStatus={changeTaskStatus}
+                        currentFilterStatus={tl.filter}
+                        deleteTodolist={deleteTodolist}
+                        changeTaskTitle={changeTaskTitle}
+                        changeTodolistTitle={changeTodolistTitle}
+                    />
+                </Paper>
+            </Grid>
         )
     })
 
     return (
         <div className="app">
-            <CreateItemForm createItem={createTodolist}/>
-            {todolistsComponents}
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{mr: 2}}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                        News
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid
+                    container
+                    sx={{justifyContent: 'center', m: '20px'}}>
+                    <CreateItemForm createItem={createTodolist}/>
+                </Grid>
+                <Grid
+                    sx={{justifyContent: 'center'}}
+                    container
+                    spacing={3}>
+                    {todolistsComponents}
+                </Grid>
+            </Container>
         </div>
     )
 }

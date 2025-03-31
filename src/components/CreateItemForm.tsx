@@ -1,5 +1,6 @@
-import {Button} from './Button.tsx';
 import {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Box, IconButton, TextField} from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type Props = {
     createItem: (newTaskTitle: string) => void
@@ -30,14 +31,18 @@ export const CreateItemForm = ({createItem}: Props) => {
 
 
     return (
-        <div>
-            <input value={newTaskTitle}
-                   onChange={changeItemTitleHandler}
-                   onKeyDown={createTaskOnEnterHandler}
-                   className={error ? 'error' : ''}
+        <Box sx={{display: 'flex', alignItems: 'center'}}>
+            <TextField
+                value={newTaskTitle}
+                label="Type value"
+                onChange={changeItemTitleHandler}
+                onKeyDown={createTaskOnEnterHandler}
+                error={!!error}
+                helperText={error}
             />
-            <Button title={'+'} onClick={createItemHandler}/>
-            {error && <div className={'error-message'}>{error}</div>}
-        </div>
+            <IconButton aria-label="add" onClick={createItemHandler} sx={{alignItems: 'center'}}>
+                <AddCircleOutlineIcon fontSize="inherit"/>
+            </IconButton>
+        </Box>
     );
 };

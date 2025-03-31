@@ -1,5 +1,5 @@
-import {Button} from './Button.tsx';
 import {FilterValue} from '../App.tsx';
+import {Button} from '@mui/material';
 
 type Props = {
     currentFilterStatus: FilterValue
@@ -13,18 +13,30 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
 
     return (
         <div style={{marginTop: '20px', marginBottom: '20px'}}>
-            <Button title={'All'}
-                    onClick={onAllClickHandler}
-                    className={currentFilterStatus === 'all' ? 'active-filter' : ''}
-            />
-            <Button title={'Active'}
-                    onClick={onActiveClickHandler}
-                    className={currentFilterStatus === 'active' ? 'active-filter' : ''}
-            />
-            <Button title={'Completed'}
-                    onClick={onCompletedClickHandler}
-                    className={currentFilterStatus === 'completed' ? 'active-filter' : ''}
-            />
+            <Button
+                onClick={onAllClickHandler}
+                color={'inherit'}
+                variant={currentFilterStatus === 'all' ? 'contained' : 'text'}
+                size={'small'}
+            >
+                All
+            </Button>
+            <Button
+                onClick={onActiveClickHandler}
+                color={'primary'}
+                variant={currentFilterStatus === 'active' ? 'contained' : 'text'}
+                size={'small'}
+            >
+                Active
+            </Button>
+            <Button
+                onClick={onCompletedClickHandler}
+                color={'secondary'}
+                variant={currentFilterStatus === 'completed' ? 'contained' : 'text'}
+                size={'small'}
+            >
+                Completed
+            </Button>
         </div>
     );
 };

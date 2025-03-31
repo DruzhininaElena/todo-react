@@ -1,5 +1,6 @@
 import {TaskItem} from './TaskItem.tsx';
 import {Task} from '../App.tsx';
+import { List } from '@mui/material';
 
 type Props = {
     tasks: Task[]
@@ -10,10 +11,11 @@ type Props = {
 };
 export const Tasks = ({tasks, deleteTask, changeTaskStatus, changeTaskTitle}: Props) => {
     return (
-        <ul>
+        <List>
             {tasks.map(task => {
                 return (
                     <TaskItem
+                        key={task.id}
                         task={task}
                         deleteTask={((taskId: string) => deleteTask(taskId))}
                         changeTaskStatus={(isDone: boolean, taskId: string) => changeTaskStatus(isDone, taskId)}
@@ -21,6 +23,6 @@ export const Tasks = ({tasks, deleteTask, changeTaskStatus, changeTaskTitle}: Pr
                     />
                 )
             })}
-        </ul>
+        </List>
     );
 };

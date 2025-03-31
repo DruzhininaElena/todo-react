@@ -1,6 +1,6 @@
 import {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Box, IconButton, TextField} from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 type Props = {
     createItem: (newTaskTitle: string) => void
@@ -31,7 +31,7 @@ export const CreateItemForm = ({createItem}: Props) => {
 
 
     return (
-        <Box sx={{display: 'flex', alignItems: 'center'}}>
+        <Box >
             <TextField
                 value={newTaskTitle}
                 label="Type value"
@@ -40,8 +40,11 @@ export const CreateItemForm = ({createItem}: Props) => {
                 error={!!error}
                 helperText={error}
             />
-            <IconButton aria-label="add" onClick={createItemHandler} sx={{alignItems: 'center'}}>
-                <AddCircleOutlineIcon fontSize="inherit"/>
+            <IconButton
+                sx={{mt: '8px'}}
+                aria-label="add"
+                onClick={createItemHandler}>
+                <AddBoxIcon color={'primary'}/>
             </IconButton>
         </Box>
     );

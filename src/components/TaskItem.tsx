@@ -28,8 +28,8 @@ export const TaskItem = ({task, deleteTask, changeTaskStatus, changeTaskTitle}: 
             <Checkbox checked={task.isDone}
                    onChange={changeTaskStatusHandler} />
             <EditableSpan value={task.title} changeTaskTitle={changeTaskTitle} />
-            <IconButton aria-label="delete" onClick={deleteTaskHandler} size={'small'}>
-                <DeleteIcon fontSize="inherit"/>
+            <IconButton aria-label="delete" onClick={deleteTaskHandler} >
+                <DeleteIcon />
             </IconButton>
         </ListItem>
     );

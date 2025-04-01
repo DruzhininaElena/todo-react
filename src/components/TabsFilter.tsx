@@ -1,5 +1,5 @@
 import {FilterValue} from '../App.tsx';
-import {Button} from '@mui/material';
+import {Button, Grid} from '@mui/material';
 
 type Props = {
     currentFilterStatus: FilterValue
@@ -12,8 +12,9 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
     const onCompletedClickHandler = () => changeFilter('completed')
 
     return (
-        <div style={{marginTop: '20px', marginBottom: '20px'}}>
+        <Grid container spacing={1} sx={{marginTop: '20px', marginBottom: '20px', justifyContent: 'center'}}>
             <Button
+                // sx={{flexGrow: '1'}}
                 onClick={onAllClickHandler}
                 color={'inherit'}
                 variant={currentFilterStatus === 'all' ? 'contained' : 'text'}
@@ -22,6 +23,7 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
                 All
             </Button>
             <Button
+                // sx={{flexGrow: '1'}}
                 onClick={onActiveClickHandler}
                 color={'primary'}
                 variant={currentFilterStatus === 'active' ? 'contained' : 'text'}
@@ -30,6 +32,7 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
                 Active
             </Button>
             <Button
+                // sx={{flexGrow: '1'}}
                 onClick={onCompletedClickHandler}
                 color={'secondary'}
                 variant={currentFilterStatus === 'completed' ? 'contained' : 'text'}
@@ -37,6 +40,6 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
             >
                 Completed
             </Button>
-        </div>
+        </Grid>
     );
 };

@@ -1,5 +1,5 @@
 import {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Box, IconButton, TextField} from '@mui/material';
+import {Grid, IconButton, TextField} from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 type Props = {
@@ -31,8 +31,9 @@ export const CreateItemForm = ({createItem}: Props) => {
 
 
     return (
-        <Box >
+        <Grid container sx={{alignItems: 'center'}}>
             <TextField
+                sx={{flexGrow: '1'}}
                 value={newTaskTitle}
                 label="Type value"
                 onChange={changeItemTitleHandler}
@@ -41,11 +42,10 @@ export const CreateItemForm = ({createItem}: Props) => {
                 helperText={error}
             />
             <IconButton
-                sx={{mt: '8px'}}
                 aria-label="add"
                 onClick={createItemHandler}>
                 <AddBoxIcon color={'primary'}/>
             </IconButton>
-        </Box>
+        </Grid>
     );
 };

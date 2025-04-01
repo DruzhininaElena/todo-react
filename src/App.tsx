@@ -10,6 +10,7 @@ import {NavButton} from './styles/NavButton.ts';
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import {MaterialUISwitch} from './styles/MaterialUISwitch.ts';
+import {deepPurple} from '@mui/material/colors';
 
 type ThemeMode = 'dark' | 'light'
 
@@ -72,7 +73,7 @@ export const App = () => {
         palette: {
             mode: themeMode,
             primary: {
-                main: '#087EA4',
+                main: deepPurple[500],
             },
         },
     })
@@ -153,7 +154,9 @@ export const App = () => {
         }
 
         return (
-            <Grid key={tl.id}>
+            <Grid key={tl.id}
+                  size={{ xs: 12, sm: 6, md: 4 }}
+            >
                 <Paper sx={{p: '10px 20px'}}>
                     <TodolistItem
                         todolistId={tl.id}
@@ -174,7 +177,7 @@ export const App = () => {
     })
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} >
             <CssBaseline />
             <AppBar position="static">
                 <Toolbar>
@@ -194,11 +197,10 @@ export const App = () => {
             <Container maxWidth={'lg'}>
                 <Grid
                     container
-                    sx={{justifyContent: 'center', m: '30px 0'}}>
+                    sx={{m: '30px 0'}}>
                     <CreateItemForm createItem={createTodolist}/>
                 </Grid>
                 <Grid
-                    sx={{justifyContent: 'center'}}
                     container
                     spacing={4}>
                     {todolistsComponents}

@@ -1,4 +1,4 @@
-import {Task} from '../App.tsx';
+import {Task} from '../app/App.tsx';
 import {ChangeEvent} from 'react';
 import {EditableSpan} from './EditableSpan.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';

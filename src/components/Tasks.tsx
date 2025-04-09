@@ -1,5 +1,5 @@
 import {TaskItem} from './TaskItem.tsx';
-import {Task} from '../App.tsx';
+import {Task} from '../app/App.tsx';
 import { List } from '@mui/material';
 
 type Props = {

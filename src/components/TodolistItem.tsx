@@ -1,4 +1,4 @@
-import {FilterValue, Task} from '../App.tsx';
+import {FilterValue, Task} from '../app/App.tsx';
 import {TabsFilter} from './TabsFilter.tsx';
 import {CreateItemForm} from './CreateItemForm.tsx';
 import {TodolistTitle} from './TodolistTitle.tsx';

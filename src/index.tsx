@@ -1,5 +1,5 @@
 import './index.css';
-import {App} from './App';
+import {App} from './app/App.tsx';
 import * as serviceWorker from './serviceWorker';
 import { createRoot } from 'react-dom/client';
 

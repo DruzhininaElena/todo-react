@@ -1,4 +1,4 @@
-import {FilterValue} from '../App.tsx';
+import {FilterValue} from '../app/App.tsx';
 import {Button, ButtonGroup, Grid} from '@mui/material';
 
 type Props = {

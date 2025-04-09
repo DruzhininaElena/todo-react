@@ -1,5 +1,5 @@
 import {FilterValue} from '../App.tsx';
-import {Button, Grid} from '@mui/material';
+import {Button, ButtonGroup, Grid} from '@mui/material';
 
 type Props = {
     currentFilterStatus: FilterValue
@@ -12,34 +12,33 @@ export const TabsFilter = ({currentFilterStatus, changeFilter}: Props) => {
     const onCompletedClickHandler = () => changeFilter('completed')
 
     return (
-        <Grid container spacing={1} sx={{marginTop: '20px', marginBottom: '20px', justifyContent: 'center'}}>
-            <Button
-                // sx={{flexGrow: '1'}}
-                onClick={onAllClickHandler}
-                color={'inherit'}
-                variant={currentFilterStatus === 'all' ? 'contained' : 'text'}
-                size={'small'}
-            >
-                All
-            </Button>
-            <Button
-                // sx={{flexGrow: '1'}}
-                onClick={onActiveClickHandler}
-                color={'primary'}
-                variant={currentFilterStatus === 'active' ? 'contained' : 'text'}
-                size={'small'}
-            >
-                Active
-            </Button>
-            <Button
-                // sx={{flexGrow: '1'}}
-                onClick={onCompletedClickHandler}
-                color={'secondary'}
-                variant={currentFilterStatus === 'completed' ? 'contained' : 'text'}
-                size={'small'}
-            >
-                Completed
-            </Button>
+        <Grid container spacing={1} sx={{mt: '20px', mb: '25px', justifyContent: 'center'}}>
+            <ButtonGroup variant="outlined" size={'small'}>
+                <Button
+                    disableElevation
+                    onClick={onAllClickHandler}
+                    color={'primary'}
+                    variant={currentFilterStatus === 'all' ? 'contained' : 'outlined'}
+                >
+                    All
+                </Button>
+                <Button
+                    disableElevation
+                    onClick={onActiveClickHandler}
+                    color={'primary'}
+                    variant={currentFilterStatus === 'active' ? 'contained' : 'outlined'}
+                >
+                    Active
+                </Button>
+                <Button
+                    disableElevation
+                    onClick={onCompletedClickHandler}
+                    color={'primary'}
+                    variant={currentFilterStatus === 'completed' ? 'contained' : 'outlined'}
+                >
+                    Completed
+                </Button>
+            </ButtonGroup>
         </Grid>
     );
 };

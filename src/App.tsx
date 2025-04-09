@@ -149,9 +149,9 @@ export const App = () => {
 
         return (
             <Grid key={tl.id}
-                  size={{ xs: 12, sm: 6, md: 4 }}
+                  size={{ xs: 12, sm: 6, md: 3 }}
             >
-                <Paper sx={{p: '10px 20px'}}>
+                <Paper sx={{p: '10px 20px', mb: '20px'}} elevation={5}>
                     <TodolistItem
                         todolistId={tl.id}
                         title={tl.title}

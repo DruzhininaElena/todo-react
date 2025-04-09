@@ -9,8 +9,7 @@ type Props = {
 export const NavButton = styled(Button)<Props>(({ background, theme }) =>({
     minWidth: '110px',
     fontWeight: 'bold',
-    boxShadow: `0 0 0 1px ${!background? theme.palette.primary.dark : theme.palette.primary.light}, 4px 4px 0 0 ${theme.palette.primary.dark}`,
-    // boxShadow: `0 0 0 2px ${theme.palette.primary.dark}, 4px 4px 0 0 ${theme.palette.primary.dark}`,
+    boxShadow: `0 0 0 1px ${!background? theme.palette.primary.dark : theme.palette.primary.light}, 3px 3px 0 0 ${theme.palette.primary.dark}`,
     borderRadius: '2px',
     textTransform: 'capitalize',
     margin: '0 10px',

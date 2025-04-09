@@ -22,14 +22,15 @@ export const TaskItem = ({task, deleteTask, changeTaskStatus, changeTaskTitle}: 
 
     return (
         <ListItem
-            sx={{p: '0', textDecoration: liDecoration}}
+            disablePadding
+            sx={{textDecoration: liDecoration}}
             key={task.id}
             className={task.isDone ? 'is-done' : ''}>
             <Checkbox checked={task.isDone}
                    onChange={changeTaskStatusHandler} />
             <EditableSpan value={task.title} changeTaskTitle={changeTaskTitle} />
             <IconButton aria-label="delete" onClick={deleteTaskHandler} >
-                <DeleteIcon />
+                <DeleteIcon fontSize={'small'}/>
             </IconButton>
         </ListItem>
     );

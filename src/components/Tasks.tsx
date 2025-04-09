@@ -11,7 +11,7 @@ type Props = {
 };
 export const Tasks = ({tasks, deleteTask, changeTaskStatus, changeTaskTitle}: Props) => {
     return (
-        <List>
+        <List disablePadding sx={{pt: '20px'}}>
             {tasks.map(task => {
                 return (
                     <TaskItem

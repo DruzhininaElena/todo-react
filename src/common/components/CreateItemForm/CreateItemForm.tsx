@@ -4,8 +4,9 @@ import AddBoxIcon from "@mui/icons-material/AddBox"
 
 type Props = {
   createItem: (newTaskTitle: string) => void
+  label: string
 }
-export const CreateItemForm = ({ createItem }: Props) => {
+export const CreateItemForm = ({ createItem, label }: Props) => {
   const [newTaskTitle, setNewTaskTitle] = useState("")
   const [error, setError] = useState<string | null>(null)
 
@@ -35,7 +36,7 @@ export const CreateItemForm = ({ createItem }: Props) => {
           size={"small"}
           fullWidth
           value={newTaskTitle}
-          label="Type value"
+          label={label}
           onChange={changeItemTitleHandler}
           onKeyDown={createTaskOnEnterHandler}
           error={!!error}

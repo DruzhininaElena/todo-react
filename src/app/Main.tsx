@@ -9,13 +9,12 @@ export const Main = () => {
 
   function createTodolist(title: string) {
     dispatch(createTodolistTC({title}))
-    // dispatch(createTodolistAC({title, id: nanoid()}))
   }
 
   return (
     <Container maxWidth={"lg"}>
       <Grid container sx={{ m: "30px 0" }}>
-        <CreateItemForm createItem={createTodolist} />
+        <CreateItemForm createItem={createTodolist} label='Create new todolist'/>
       </Grid>
       <Grid container spacing={4}>
         <Todolists />

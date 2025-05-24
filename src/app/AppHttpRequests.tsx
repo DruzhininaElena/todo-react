@@ -89,14 +89,14 @@ export const AppHttpRequests = () => {
 
   return (
     <div style={{ margin: "20px" }}>
-      <CreateItemForm createItem={createTodolist} />
+      <CreateItemForm createItem={createTodolist} label='Create new todolist'/>
       {todolists.map((todolist) => (
         <div key={todolist.id} style={container}>
           <div>
             <EditableSpan changeTaskTitle={(title) => changeTodolistTitle(todolist.id, title)} value={todolist.title} />
             <button onClick={() => deleteTodolist(todolist.id)}>x</button>
           </div>
-          <CreateItemForm createItem={(title) => createTask(todolist.id, title)} />
+          <CreateItemForm createItem={(title) => createTask(todolist.id, title)} label='Create new todolist'/>
           {tasks[todolist.id]?.map((task) => (
             <div key={task.id}>
               <Checkbox checked={task.status === TaskStatus.Completed} onChange={(e) => changeTaskStatus(e, task)} />

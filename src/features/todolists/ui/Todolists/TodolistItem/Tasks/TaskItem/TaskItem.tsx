@@ -1,35 +1,37 @@
-import { Checkbox, IconButton, ListItem } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete"
-import { changeTaskStatusAC, changeTaskTitleAC, deleteTaskAC, Task } from "@/features/todolists/model/tasks-slice.ts"
-import { ChangeEvent } from "react"
-import { EditableSpan } from "@/common/components"
-import { useAppDispatch } from "@/common/hooks"
+import {Checkbox, IconButton, ListItem} from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
+import {changeTaskStatusTC, changeTaskTitleTC, deleteTaskTC} from '@/features/todolists/model/tasks-slice.ts'
+import {ChangeEvent} from 'react'
+import {EditableSpan} from '@/common/components'
+import {useAppDispatch} from '@/common/hooks'
+import {DomainTask, TaskStatus} from '@/features/todolists/api/tasksApi.types.ts';
 
 type Props = {
-  task: Task
+  task: DomainTask
   todolistId: string
 }
 export const TaskItem = ({ task, todolistId }: Props) => {
   const dispatch = useAppDispatch()
 
   const deleteTaskHandler = () => {
-    dispatch(deleteTaskAC({ taskId: task.id, todolistId }))
+    dispatch(deleteTaskTC({ taskId: task.id, todolistId }))
   }
 
   const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const isDone = e.currentTarget.checked
-    dispatch(changeTaskStatusAC({ todolistId, taskId: task.id, isDone }))
+    dispatch(changeTaskStatusTC({ task, status: isDone ? TaskStatus.Completed : TaskStatus.New }))
   }
 
   const changeTaskTitleHandler = (title: string) => {
-    dispatch(changeTaskTitleAC({ todolistId, taskId: task.id, title }))
+    dispatch(changeTaskTitleTC({ task, title }))
   }
 
-  const liDecoration = task.isDone ? "line-through" : "none"
+  const isTaskCompleted = task.status === TaskStatus.Completed
+  const liDecoration = isTaskCompleted ? "line-through" : "none"
 
   return (
-    <ListItem disablePadding sx={{ textDecoration: liDecoration }} className={task.isDone ? "is-done" : ""}>
-      <Checkbox checked={task.isDone} onChange={changeTaskStatusHandler} />
+    <ListItem disablePadding sx={{ textDecoration: liDecoration }} className={isTaskCompleted ? "is-done" : ""}>
+      <Checkbox checked={isTaskCompleted} onChange={changeTaskStatusHandler} />
       <EditableSpan value={task.title} changeTaskTitle={changeTaskTitleHandler} />
       <IconButton aria-label="delete" onClick={deleteTaskHandler}>
         <DeleteIcon fontSize={"small"} />

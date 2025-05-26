@@ -1,10 +1,10 @@
 import {Checkbox, IconButton, ListItem} from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-import {changeTaskStatusTC, changeTaskTitleTC, deleteTaskTC} from '@/features/todolists/model/tasks-slice.ts'
+import {deleteTaskTC, updateTaskTC} from '@/features/todolists/model/tasks-slice.ts'
 import {ChangeEvent} from 'react'
 import {EditableSpan} from '@/common/components'
 import {useAppDispatch} from '@/common/hooks'
-import {DomainTask, TaskStatus} from '@/features/todolists/api/tasksApi.types.ts';
+import {DomainTask, TaskStatus, UpdateTaskModel} from '@/features/todolists/api/tasksApi.types.ts';
 
 type Props = {
   task: DomainTask
@@ -19,11 +19,27 @@ export const TaskItem = ({ task, todolistId }: Props) => {
 
   const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const isDone = e.currentTarget.checked
-    dispatch(changeTaskStatusTC({ task, status: isDone ? TaskStatus.Completed : TaskStatus.New }))
+    const domainModel: UpdateTaskModel = {
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      startDate: task.startDate,
+      deadline: task.deadline,
+      status: isDone ? TaskStatus.Completed : TaskStatus.New
+    }
+    dispatch(updateTaskTC({ todolistId: task.todoListId, taskId: task.id, domainModel }))
   }
 
   const changeTaskTitleHandler = (title: string) => {
-    dispatch(changeTaskTitleTC({ task, title }))
+    const domainModel: UpdateTaskModel = {
+      title,
+      description: task.description,
+      priority: task.priority,
+      startDate: task.startDate,
+      deadline: task.deadline,
+      status: task.status
+    }
+    dispatch(updateTaskTC({ todolistId: task.todoListId, taskId: task.id, domainModel }))
   }
 
   const isTaskCompleted = task.status === TaskStatus.Completed

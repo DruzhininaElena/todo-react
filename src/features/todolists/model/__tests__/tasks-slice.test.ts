@@ -2,8 +2,9 @@ import {beforeEach, expect, test} from 'vitest'
 
 import {createTaskTC, deleteTaskTC, tasksReducer, TasksState, updateTaskTC,} from '../tasks-slice.ts'
 import {createTodolistTC, deleteTodolistTC} from '../todolists-slice.ts'
-import {TaskPriority, TaskStatus} from '@/features/todolists/api/tasksApi.types.ts';
 import {nanoid} from '@reduxjs/toolkit';
+import {TaskPriority, TaskStatus} from '@/common/enums';
+
 
 let startState: TasksState = {}
 

@@ -5,8 +5,9 @@ import AddBoxIcon from "@mui/icons-material/AddBox"
 type Props = {
   createItem: (newTaskTitle: string) => void
   label: string
+  disabled?: boolean
 }
-export const CreateItemForm = ({ createItem, label }: Props) => {
+export const CreateItemForm = ({ createItem, label, disabled }: Props) => {
   const [newTaskTitle, setNewTaskTitle] = useState("")
   const [error, setError] = useState<string | null>(null)
 
@@ -40,6 +41,7 @@ export const CreateItemForm = ({ createItem, label }: Props) => {
           onChange={changeItemTitleHandler}
           onKeyDown={createTaskOnEnterHandler}
           error={!!error}
+          disabled={disabled}
         />
         {error && (
           <Box
@@ -49,14 +51,14 @@ export const CreateItemForm = ({ createItem, label }: Props) => {
               left: 0,
               fontSize: "0.75rem",
               color: "error.main",
-              padding: "0 14px", // Совпадает с отступами TextField
+              padding: "0 14px",
             }}
           >
             {error}
           </Box>
         )}
       </Box>
-      <IconButton aria-label="add" onClick={createItemHandler}>
+      <IconButton aria-label="add" onClick={createItemHandler} disabled={disabled}>
         <AddBoxIcon color={"primary"} />
       </IconButton>
     </Grid>

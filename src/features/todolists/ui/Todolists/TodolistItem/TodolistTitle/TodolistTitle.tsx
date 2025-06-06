@@ -8,7 +8,7 @@ type Props = {
   todolist: DomainTodolist
 }
 export const TodolistTitle = ({ todolist }: Props) => {
-  const { title, id } = todolist
+  const { title, id, entityStatus } = todolist
 
   const dispatch = useAppDispatch()
 
@@ -22,8 +22,8 @@ export const TodolistTitle = ({ todolist }: Props) => {
   return (
     <>
       <h3 style={{ textAlign: "center" }}>
-        <EditableSpan value={title} changeTaskTitle={changeTaskTitleHandler} />
-        <IconButton aria-label="delete" onClick={deleteTodolistHandler} size={"small"}>
+        <EditableSpan value={title} changeTaskTitle={changeTaskTitleHandler} disabled={entityStatus === 'loading'}/>
+        <IconButton aria-label="delete" onClick={deleteTodolistHandler} size={"small"} disabled={entityStatus === 'loading'}>
           <DeleteIcon fontSize="inherit" />
         </IconButton>
       </h3>

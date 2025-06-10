@@ -1,12 +1,14 @@
-import {AppBar, Container, IconButton, LinearProgress, Toolbar} from '@mui/material'
+import { AppBar, Container, IconButton, LinearProgress, Toolbar } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import { NavButton } from "@/common/components/NavButton/NavButton.ts"
 import { SwitchThemes } from "./SwitchThemes/SwitchThemes.ts"
-import {changeThemeModeAC, selectStatus, selectThemeMode} from '@/app/app-slice.ts'
+import { changeThemeModeAC, selectStatus, selectThemeMode } from "@/app/app-slice.ts"
 import { useAppDispatch } from "@/common/hooks/useAppDispatch.ts"
 import { useAppSelector } from "@/common/hooks/useAppSelector.ts"
 import { getTheme } from "@/common/theme/theme.ts"
 import { containerSx } from "@/common/components/Header/Header.style.ts"
+import { NavLink } from "react-router"
+import { Path } from "@/common/routing/Routing.tsx"
 
 export const Header = () => {
   const themeMode = useAppSelector(selectThemeMode)
@@ -28,7 +30,12 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <div>
-            <NavButton color={"inherit"}>Sign in</NavButton>
+            <NavLink to={Path.Main}>
+              <NavButton color={"inherit"}>Home</NavButton>
+            </NavLink>
+            <NavLink to={Path.Login}>
+              <NavButton color={"inherit"}>Sign in</NavButton>
+            </NavLink>
             <NavButton color={"inherit"}>Sign up</NavButton>
             <NavButton color={"inherit"} background={theme.palette.primary.dark}>
               Faq
@@ -37,7 +44,7 @@ export const Header = () => {
           </div>
         </Container>
       </Toolbar>
-      {status === 'loading' && <LinearProgress />}
+      {status === "loading" && <LinearProgress />}
     </AppBar>
   )
 }

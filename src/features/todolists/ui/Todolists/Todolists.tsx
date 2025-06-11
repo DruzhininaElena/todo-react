@@ -1,9 +1,9 @@
-import { Grid, Paper } from "@mui/material"
-import { TodolistItem } from "./TodolistItem/TodolistItem.tsx"
-import { useAppSelector } from "@/common/hooks/useAppSelector.ts"
-import { fetchTodolistsTC, resetTodolistsAC, selectTodolists } from "@/features/todolists/model/todolists-slice.ts"
-import { useEffect } from "react"
-import { useAppDispatch } from "@/common/hooks"
+import {Grid, Paper} from '@mui/material'
+import {TodolistItem} from './TodolistItem/TodolistItem.tsx'
+import {useAppSelector} from '@/common/hooks/useAppSelector.ts'
+import {fetchTodolistsTC, selectTodolists} from '@/features/todolists/model/todolists-slice.ts'
+import {useEffect} from 'react'
+import {useAppDispatch} from '@/common/hooks'
 
 export const Todolists = () => {
   const todolists = useAppSelector(selectTodolists)
@@ -12,9 +12,6 @@ export const Todolists = () => {
 
   useEffect(() => {
     dispatch(fetchTodolistsTC())
-    return () => {
-      dispatch(resetTodolistsAC())
-    }
   }, [])
 
   return (

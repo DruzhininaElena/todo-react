@@ -1,18 +1,19 @@
-import { selectThemeMode } from "@/app/app-slice"
-import { useAppSelector } from "@/common/hooks"
-import { getTheme } from "@/common/theme"
-import Button from "@mui/material/Button"
-import Checkbox from "@mui/material/Checkbox"
-import FormControl from "@mui/material/FormControl"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import FormGroup from "@mui/material/FormGroup"
-import FormLabel from "@mui/material/FormLabel"
-import TextField from "@mui/material/TextField"
-import { Grid } from "@mui/material"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import styles from "./Login.module.css"
-import { LoginInputs, loginSchema } from "@/features/auth/lib/schemas/loginSchema.ts"
-import { zodResolver } from "@hookform/resolvers/zod"
+import {selectThemeMode} from '@/app/app-slice'
+import {useAppSelector} from '@/common/hooks'
+import {getTheme} from '@/common/theme'
+import Button from '@mui/material/Button'
+import Checkbox from '@mui/material/Checkbox'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormLabel from '@mui/material/FormLabel'
+import TextField from '@mui/material/TextField'
+import {Grid} from '@mui/material'
+import {Controller, SubmitHandler, useForm} from 'react-hook-form'
+import styles from './Login.module.css'
+import {LoginInputs, loginSchema} from '@/features/auth/lib/schemas/loginSchema.ts'
+import {zodResolver} from '@hookform/resolvers/zod';
+
 
 export const Login = () => {
   const themeMode = useAppSelector(selectThemeMode)
@@ -34,6 +35,9 @@ export const Login = () => {
     console.log(data)
     reset()
   }
+
+  console.log('render')
+  console.log(errors)
 
   return (
     <Grid container justifyContent={"center"}>
@@ -70,8 +74,8 @@ export const Login = () => {
                 <Controller
                   name="rememberMe"
                   control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <Checkbox onChange={(e) => onChange(e.target.checked)} checked={value} />
+                  render={({ field: { value, ...rest } }) => (
+                    <Checkbox {...rest} checked={value} />
                   )}
                 />
               }

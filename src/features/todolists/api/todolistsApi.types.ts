@@ -1,9 +1,9 @@
-import { z } from "zod"
+import { z } from "zod/v4"
 
 export const TodolistSchema = z.object({
   id: z.string(),
   title: z.string(),
-  addedDate: z.string().datetime({ local: true }),
+  addedDate: z.string(),
   order: z.number(),
 })
 

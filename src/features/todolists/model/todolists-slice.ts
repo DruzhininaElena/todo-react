@@ -26,10 +26,8 @@ export const todolistsSlice = createAppSlice({
           }
         },
         {
-          fulfilled: (state, action) => {
-            action.payload?.todolists.forEach((tl) => {
-              state.push({ ...tl, filter: "all", entityStatus: "idle" })
-            })
+          fulfilled: (_state, action) => {
+            return action.payload.todolists.map((todolist) => ({ ...todolist, filter: "all", entityStatus: "idle" }))
           },
         },
       ),
@@ -114,8 +112,7 @@ export const todolistsSlice = createAppSlice({
       changeTodolistStatusAC: create.reducer<{ id: string; status: RequestStatus }>((state, action) => {
         const todolist = state.find((todo) => todo.id === action.payload.id)
         if (todolist) todolist.entityStatus = action.payload.status
-      }),
-      resetTodolistsAC: create.reducer(() => []),
+      })
     }
   },
   selectors: {
@@ -129,8 +126,7 @@ export const {
   deleteTodolistTC,
   changeTodolistTitleTC,
   changeTodolistFilterAC,
-  changeTodolistStatusAC,
-  resetTodolistsAC,
+  changeTodolistStatusAC
 } = todolistsSlice.actions
 export const { selectTodolists } = todolistsSlice.selectors
 export const todolistsReducer = todolistsSlice.reducer

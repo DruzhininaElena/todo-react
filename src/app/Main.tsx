@@ -5,20 +5,27 @@ import {Todolists} from '@/features/todolists/ui/Todolists/Todolists.tsx'
 import {CreateItemForm} from '@/common/components'
 
 export const Main = () => {
-  const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
+    // const navigate = useNavigate()
 
-  function createTodolist(title: string) {
-    dispatch(createTodolistTC(title))
-  }
+    function createTodolist(title: string) {
+        dispatch(createTodolistTC(title))
+    }
 
-  return (
-    <Container maxWidth={"lg"}>
-      <Grid container sx={{ m: "30px 0" }}>
-        <CreateItemForm createItem={createTodolist} label='Create new todolist'/>
-      </Grid>
-      <Grid container spacing={4}>
-        <Todolists />
-      </Grid>
-    </Container>
-  )
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         navigate(Path.Login)
+    //     }
+    // }, [isLoggedIn]);
+
+    return (
+        <Container maxWidth={'lg'}>
+            <Grid container sx={{m: '30px 0'}}>
+                <CreateItemForm createItem={createTodolist} label="Create new todolist"/>
+            </Grid>
+            <Grid container spacing={4}>
+                <Todolists/>
+            </Grid>
+        </Container>
+    )
 }

@@ -8,6 +8,7 @@ import {useAppSelector} from '@/common/hooks/useAppSelector.ts'
 import {getTheme} from '@/common/theme/theme.ts'
 import {containerSx} from '@/common/components/Header/Header.style.ts'
 import {logoutTC, selectIsLoggedIn} from '@/features/auth/model/auth-slice.ts';
+import {clearDataAC} from '@/features/todolists/model/todolists-slice.ts';
 
 export const Header = () => {
     const themeMode = useAppSelector(selectThemeMode)
@@ -24,6 +25,9 @@ export const Header = () => {
 
     const logoutHandler = () => {
         dispatch(logoutTC())
+            .then(() => {
+            dispatch(clearDataAC())
+        })
     }
 
     return (

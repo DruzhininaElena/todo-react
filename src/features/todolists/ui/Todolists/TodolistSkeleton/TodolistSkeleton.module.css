@@ -1,0 +1,19 @@
+.common {
+    display: flex;
+    gap: 10px
+}
+
+.title {
+    composes: common;
+    align-items: center;
+    justify-content: center;
+}
+
+.createItemForm {
+    composes: common;
+    align-items: center;
+    justify-content: space-between;
+}
+.input {
+    flex-grow: 1;
+}

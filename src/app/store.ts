@@ -1,11 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import {todolistsReducer, todolistsSlice} from '@/features/todolists/model/todolists-slice.ts'
 import {appReducer, appSlice} from './app-slice.ts'
 import {setupListeners} from '@reduxjs/toolkit/query';
 import {baseApi} from '@/app/baseApi.ts';
 
 const rootReducer = combineReducers({
-    [todolistsSlice.name]: todolistsReducer,
     [appSlice.name]: appReducer,
     [baseApi.reducerPath]: baseApi.reducer,
 })

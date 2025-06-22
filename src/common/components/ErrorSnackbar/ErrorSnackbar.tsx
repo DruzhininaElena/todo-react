@@ -2,7 +2,7 @@ import {SyntheticEvent} from 'react'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import {useSelector} from 'react-redux';
-import {changeAppErrorAC, selectAppError} from '@/app/app-slice.ts';
+import {setAppErrorAC, selectAppError} from '@/app/app-slice.ts';
 import {useAppDispatch} from '@/common/hooks';
 
 export const ErrorSnackbar = () => {
@@ -14,7 +14,7 @@ export const ErrorSnackbar = () => {
             return
         }
 
-        dispatch(changeAppErrorAC({error: null}))
+        dispatch(setAppErrorAC({error: null}))
     }
 
     return (

@@ -1,4 +1,4 @@
-import { changeAppErrorAC, changeAppStatusAC } from "@/app/app-slice.ts"
+import { setAppErrorAC, changeAppStatusAC } from "@/app/app-slice.ts"
 import type { Dispatch } from "@reduxjs/toolkit"
 import axios from "axios"
 import { z } from "zod"
@@ -24,6 +24,6 @@ export const handleServerNetworkError = (dispatch: Dispatch, error: unknown) => 
       errorMessage = JSON.stringify(error)
   }
 
-  dispatch(changeAppErrorAC({ error: errorMessage }))
+  dispatch(setAppErrorAC({ error: errorMessage }))
   dispatch(changeAppStatusAC({ status: "failed" }))
 }

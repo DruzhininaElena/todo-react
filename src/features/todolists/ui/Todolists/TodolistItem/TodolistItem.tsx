@@ -4,8 +4,8 @@ import {TodolistTitle} from './TodolistTitle/TodolistTitle.tsx'
 import {Tasks} from './Tasks/Tasks.tsx'
 import {CreateItemForm} from '@/common/components'
 import {useCreateTasksMutation} from '@/features/todolists/api/tasksApi.ts';
-import {DomainTodolist} from '@/features/todolists/api/todolistsApi.types.ts';
 import {Grid, Paper} from '@mui/material';
+import {DomainTodolist} from '@/features/todolists/lib/types';
 
 type Props = {
     todolist: DomainTodolist

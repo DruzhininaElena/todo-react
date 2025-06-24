@@ -21,4 +21,7 @@ export const baseApi = createApi({
         return result
     },
     endpoints: () => ({}),
+    // keepUnusedDataFor: 120
+    // refetchOnFocus: true,
+    // refetchOnReconnect: true
 })

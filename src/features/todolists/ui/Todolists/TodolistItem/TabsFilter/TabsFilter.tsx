@@ -1,7 +1,6 @@
 import { ButtonGroup, Grid } from "@mui/material"
 import { TabFilter } from "@/features/todolists/ui/Todolists/TodolistItem/TabsFilter/TabFilter/TabFilter.tsx"
-import {DomainTodolist} from '@/features/todolists/api/todolistsApi.types.ts';
-import {FilterValue} from '@/common/types';
+import {DomainTodolist, FilterValue} from '@/features/todolists/lib/types';
 
 const buttons: FilterValue[] = ["all", "active", "completed"]
 

@@ -1,5 +1,4 @@
-import { z } from "zod/v4"
-import {FilterValue, RequestStatus} from '@/common/types';
+import {z} from 'zod/v4'
 
 export const TodolistSchema = z.object({
   id: z.string(),
@@ -9,8 +8,3 @@ export const TodolistSchema = z.object({
 })
 
 export type Todolist = z.infer<typeof TodolistSchema>
-
-export type DomainTodolist = Todolist & {
-  filter: FilterValue
-  entityStatus: RequestStatus
-}

@@ -6,7 +6,7 @@ import {DomainTask} from '@/features/todolists/api/tasksApi.types.ts'
 import {TaskStatus} from '@/common/enums'
 import {useDeleteTaskMutation, useUpdateTaskMutation} from '@/features/todolists/api/tasksApi.ts';
 import {createUpdateTaskModel} from '@/common/utils';
-import {DomainTodolist} from '@/features/todolists/api/todolistsApi.types.ts';
+import {DomainTodolist} from '@/features/todolists/lib/types';
 
 type Props = {
     task: DomainTask

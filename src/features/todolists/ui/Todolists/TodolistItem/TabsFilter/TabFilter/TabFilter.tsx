@@ -1,7 +1,7 @@
 import {Button} from '@mui/material'
 import {useAppDispatch} from '@/common/hooks'
 import {todolistsApi} from '@/features/todolists/api/todolistApi.ts';
-import {FilterValue} from '@/common/types';
+import {FilterValue} from '@/features/todolists/lib/types';
 
 type Props = {
   filter: FilterValue

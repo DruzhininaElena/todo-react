@@ -8,7 +8,7 @@ export const todolistsApi = baseApi.injectEndpoints({
         getTodolists: builder.query<DomainTodolist[], void>({
             query: () => '/todo-lists',
             transformResponse: (todolists: Todolist[]) => {
-                return todolists.map((tl) => ({...tl, filter: 'all', entityStatus: 'idle'}))
+                return todolists.map((tl) => ({...tl, filter: 'all'}))
             },
             providesTags: ['Todolist']
         }),
@@ -20,10 +20,6 @@ export const todolistsApi = baseApi.injectEndpoints({
             query: (id) => ({method: 'delete', url: `/todo-lists/${id}`}),
             invalidatesTags: ['Todolist'],
             onQueryStarted: async (todolistId, {dispatch, queryFulfilled}) => {
-                // const patchResult = dispatch(todolistsApi.util.updateQueryData('getTodolists', undefined, (todolists) => {
-                //     const todolist = todolists.find((tl) => tl.id === todolistId)
-                //     if (todolist) todolist.entityStatus = 'loading'
-                // }))
                 const patchResult = dispatch(
                     todolistsApi.util.updateQueryData('getTodolists', undefined, state => {
                         const index = state.findIndex(todolist => todolist.id === todolistId)

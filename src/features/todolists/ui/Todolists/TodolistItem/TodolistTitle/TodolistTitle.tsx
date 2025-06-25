@@ -9,7 +9,7 @@ type Props = {
 }
 export const TodolistTitle = ({todolist}: Props) => {
 
-    const {title, id, entityStatus} = todolist
+    const {title, id} = todolist
 
 
     const [deleteTodolist] = useDeleteTodolistMutation()
@@ -25,10 +25,8 @@ export const TodolistTitle = ({todolist}: Props) => {
     return (
         <>
             <h3 style={{textAlign: 'center'}}>
-                <EditableSpan value={title} changeTaskTitle={changeTaskTitleHandler}
-                              disabled={entityStatus === 'loading'}/>
-                <IconButton aria-label="delete" onClick={deleteTodolistHandler} size={'small'}
-                            disabled={entityStatus === 'loading'}>
+                <EditableSpan value={title} changeTaskTitle={changeTaskTitleHandler}/>
+                <IconButton aria-label="delete" onClick={deleteTodolistHandler} size={'small'}>
                     <DeleteIcon fontSize="inherit"/>
                 </IconButton>
             </h3>

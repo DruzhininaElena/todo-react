@@ -38,13 +38,12 @@ export const TaskItem = ({task, todolist}: Props) => {
 
     const isTaskCompleted = task.status === TaskStatus.Completed
     const liDecoration = isTaskCompleted ? 'line-through' : 'none'
-    const isLoadingEntityStatus = todolist.entityStatus === 'loading'
 
     return (
         <ListItem disablePadding sx={{textDecoration: liDecoration}} className={isTaskCompleted ? 'is-done' : ''}>
-            <Checkbox checked={isTaskCompleted} onChange={changeTaskStatusHandler} disabled={isLoadingEntityStatus}/>
-            <EditableSpan value={task.title} changeTaskTitle={changeTaskTitleHandler} disabled={isLoadingEntityStatus}/>
-            <IconButton aria-label="delete" onClick={deleteTaskHandler} disabled={isLoadingEntityStatus}>
+            <Checkbox checked={isTaskCompleted} onChange={changeTaskStatusHandler}/>
+            <EditableSpan value={task.title} changeTaskTitle={changeTaskTitleHandler}/>
+            <IconButton aria-label="delete" onClick={deleteTaskHandler}>
                 <DeleteIcon fontSize={'small'} />
             </IconButton>
         </ListItem>

@@ -8,6 +8,7 @@ import {useState} from 'react';
 import {
     TasksPagination
 } from '@/features/todolists/ui/Todolists/TodolistItem/Tasks/TasksPagination/TasksPagination.tsx';
+import {PAGE_SIZE} from '@/common/constants';
 
 
 type Props = {
@@ -45,7 +46,7 @@ export const Tasks = ({todolist}: Props) => {
                             <TaskItem key={task.id} task={task} todolist={todolist}/>
                         ))}
                     </List>
-                    <TasksPagination totalCount={data?.totalCount || 0} page={page} setPage={setPage}/>
+                    {PAGE_SIZE < (data?.totalCount || 0) && <TasksPagination totalCount={data?.totalCount || 0} page={page} setPage={setPage}/>}
                 </>
             )}
         </>

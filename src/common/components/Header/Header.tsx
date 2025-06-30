@@ -3,7 +3,6 @@ import { SwitchThemes } from "./SwitchThemes/SwitchThemes.ts"
 import { changeThemeModeAC, selectIsLoggedIn, selectStatus, selectThemeMode, setIsLoggedIn } from "@/app/app-slice.ts"
 import { useAppDispatch } from "@/common/hooks/useAppDispatch.ts"
 import { useAppSelector } from "@/common/hooks/useAppSelector.ts"
-import { getTheme } from "@/common/theme/theme.ts"
 import { containerSx } from "@/common/components/Header/Header.style.ts"
 import { useLogoutMutation } from "@/features/auth/api/authApi.ts"
 import { AUTH_TOKEN } from "@/common/constants"
@@ -19,8 +18,6 @@ export const Header = () => {
 
   const dispatch = useAppDispatch()
 
-  const theme = getTheme(themeMode)
-
   const changeMode = () => {
     dispatch(changeThemeModeAC({ themeMode: themeMode === "light" ? "dark" : "light" }))
   }
@@ -34,13 +31,12 @@ export const Header = () => {
         }
       })
       .then(() => {
-        // dispatch(baseApi.util.resetApiState())
         dispatch(baseApi.util.invalidateTags(["Todolist", "Task"]))
       })
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color='secondary'>
       <Toolbar>
         <Container maxWidth={"lg"} sx={containerSx}>
           <div>

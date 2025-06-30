@@ -9,7 +9,6 @@ import {selectIsLoggedIn} from '@/app/app-slice.ts';
 export const Path = {
     Main: '/',
     Login: '/login',
-    Faq: '/faq',
     NotFound: '*',
 } as const
 
@@ -21,7 +20,6 @@ export const Routing = () => {
         <Routes>
             <Route element={<ProtectedRoute isAllowed={isLoggedIn}/>}>
                 <Route path={Path.Main} element={<Main/>}/>
-                <Route path={Path.Faq} element={<h1>FAQ</h1>}/>
             </Route>
 
             <Route element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath={Path.Main}/>}>

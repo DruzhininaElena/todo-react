@@ -38,8 +38,44 @@ export const todolistsApi = baseApi.injectEndpoints({
         changeTodolistTitle: builder.mutation<BaseResponse, { id: string, title: string }>({
             query: ({id, title}) => ({method: 'put', url: `/todo-lists/${id}`, body: {title}}),
             invalidatesTags: ['Todolist']
+        }),
+        changeTodolistsOrder: builder.mutation<BaseResponse, { id: string, putAfterItemId: string | null, newOrder: DomainTodolist[] }>({
+            query: ({id, putAfterItemId}) => ({
+                method: 'put',
+                url: `/todo-lists/${id}/reorder`,
+                body: {putAfterItemId}
+            }),
+            invalidatesTags: ['Todolist'],
+            onQueryStarted: async ({newOrder}, {dispatch, queryFulfilled}) => {
+                let patchResults: any[] = []
+                patchResults.push(
+                    dispatch(
+                        todolistsApi.util.updateQueryData(
+                            'getTodolists',
+                            undefined,
+                            () => {
+                                return newOrder
+                            }
+                        )
+                    )
+                )
+
+                try {
+                    await queryFulfilled
+                } catch (err) {
+                    patchResults.forEach(patchResult => {
+                        patchResult.undo()
+                    })
+                }
+            }
         })
     }),
 })
 
-export const {useGetTodolistsQuery, useCreateTodolistMutation, useDeleteTodolistMutation, useChangeTodolistTitleMutation} = todolistsApi
+export const {
+    useGetTodolistsQuery,
+    useCreateTodolistMutation,
+    useDeleteTodolistMutation,
+    useChangeTodolistTitleMutation,
+    useChangeTodolistsOrderMutation
+} = todolistsApi

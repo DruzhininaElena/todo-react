@@ -12,9 +12,7 @@ export const Main = () => {
             <Grid container sx={{m: '30px 0'}}>
                 <CreateItemForm createItem={(title) => createTodolist(title)} label="Create new todolist"/>
             </Grid>
-            <Grid container spacing={4}>
-                <Todolists/>
-            </Grid>
+            <Todolists/>
         </Container>
     )
 }

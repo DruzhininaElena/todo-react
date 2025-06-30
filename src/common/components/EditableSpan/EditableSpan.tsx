@@ -43,7 +43,7 @@ export const EditableSpan = ({ value, changeTaskTitle, disabled = false }: Props
           disabled={disabled}
         />
       ) : (
-        <span style={{ flexGrow: "1", wordBreak: "break-all" }} onDoubleClick={turnOnEditMode}>
+        <span style={{ flexGrow: "1", wordBreak: "break-all", cursor: 'text' }} onDoubleClick={turnOnEditMode}>
           {value}
         </span>
       )}

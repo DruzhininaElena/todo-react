@@ -1,7 +1,6 @@
-import { PAGE_SIZE } from '@/common/constants'
+import {PAGE_SIZE} from '@/common/constants'
 import Pagination from '@mui/material/Pagination'
-import Typography from '@mui/material/Typography'
-import { ChangeEvent } from 'react'
+import {ChangeEvent} from 'react'
 import styles from './TasksPagination.module.css'
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
     setPage: (page: number) => void
 }
 
-export const TasksPagination = ({ totalCount, page, setPage }: Props) => {
+export const TasksPagination = ({totalCount, page, setPage}: Props) => {
     const changePage = (_: ChangeEvent<unknown>, page: number) => {
         setPage(page)
     }
@@ -19,15 +18,13 @@ export const TasksPagination = ({ totalCount, page, setPage }: Props) => {
         <>
             <Pagination
                 count={Math.ceil(totalCount / PAGE_SIZE)}
+                size='small'
                 page={page}
                 onChange={changePage}
-                shape="rounded"
-                color="primary"
+                shape='rounded'
+                color='primary'
                 className={styles.pagination}
             />
-            <div className={styles.totalCount}>
-                <Typography variant="caption">Total: {totalCount}</Typography>
-            </div>
         </>
     )
 }

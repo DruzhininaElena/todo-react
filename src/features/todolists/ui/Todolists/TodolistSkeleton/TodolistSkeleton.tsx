@@ -5,7 +5,7 @@ import {TasksSkeleton} from '@/features/todolists/ui/Todolists/TodolistItem/Task
 import {Grid, Paper} from '@mui/material';
 
 export const TodolistSkeleton = () => (
-    <Grid size={{xs: 12, sm: 6, md: 3}}>
+    <Grid size={{xs: 12, sm: 6, md: 4}}>
         <Paper sx={{p: '10px 20px', mb: '20px'}} elevation={5}>
             <div className={styles.container}>
                 <div className={styles.title}>

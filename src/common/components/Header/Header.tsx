@@ -36,7 +36,7 @@ export const Header = () => {
   }
 
   return (
-    <AppBar position="static" color='secondary'>
+    <AppBar position="relative" color='secondary'>
       <Toolbar>
         <Container maxWidth={"lg"} sx={containerSx}>
           <div>
@@ -49,7 +49,18 @@ export const Header = () => {
           </div>
         </Container>
       </Toolbar>
-      {status === "loading" && <LinearProgress />}
+      {status === "loading" && (
+          <LinearProgress
+              sx={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '4px',
+                zIndex: 99
+              }}
+          />
+      )}
     </AppBar>
   )
 }

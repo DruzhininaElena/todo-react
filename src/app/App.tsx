@@ -26,24 +26,24 @@ export const App = () => {
         if (isLoading) return
         setIsInitialized(true)
         if (data?.resultCode === ResultCode.Success) {
-            dispatch(setIsLoggedIn({ isLoggedIn: true }))
+            dispatch(setIsLoggedIn({isLoggedIn: true}))
         }
     }, [isLoading, data]);
 
-    if (!isInitialized) {
-        return (
-            <div className={styles.circularProgressContainer}>
-                <CircularProgress size={150} thickness={3} />
-            </div>
-        )
-    }
+    const circularProgress = <div className={styles.circularProgressContainer}>
+        <CircularProgress size={150} thickness={3}/>
+    </div>
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <Header/>
-            <Routing/>
-            <ErrorSnackbar/>
+            {!isInitialized ? circularProgress : (
+                <>
+                    <Header/>
+                    <Routing/>
+                    <ErrorSnackbar/>
+                </>
+            )}
         </ThemeProvider>
     )
 }

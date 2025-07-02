@@ -12,7 +12,7 @@ export type Todolist = z.infer<typeof todolistSchema>
 
 export const createTodolistResponseSchema = baseResponseSchema(
     z.object({
-      item: todolistSchema,
+      item: todolistSchema.optional(),
     }),
 )
 export type CreateTodolistResponse = z.infer<typeof createTodolistResponseSchema>

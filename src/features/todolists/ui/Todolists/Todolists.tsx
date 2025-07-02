@@ -4,8 +4,8 @@ import {TodolistSkeleton} from '../Todolists/TodolistSkeleton/TodolistSkeleton.t
 import {Grid} from '@mui/material';
 import {DndContext, DragEndEvent} from '@dnd-kit/core';
 import {SortableContext} from '@dnd-kit/sortable';
-import {changeTodolistsOrder} from '@/common/utils/changeTodolistsOrder.ts';
 import {restrictToWindowEdges} from '@dnd-kit/modifiers';
+import {changeTodolistsOrder} from '@/common/utils';
 
 export const Todolists = () => {
 

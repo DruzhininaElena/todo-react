@@ -22,7 +22,7 @@ export const TabFilter = ({ filter, currentFilter, id }: Props) => {
     <Button
       disableElevation
       onClick={changeTodolistFilterHandler}
-      color={"primary"}
+      color={"secondary"}
       variant={currentFilter === filter ? "contained" : "outlined"}
     >
       {filter}

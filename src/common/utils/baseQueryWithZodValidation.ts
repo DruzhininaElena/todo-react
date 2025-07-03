@@ -1,6 +1,7 @@
 import {z, type ZodType} from 'zod/v4'
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError, FetchBaseQueryMeta } from "@reduxjs/toolkit/query/react"
 import {setAppErrorAC} from '@/app/app-slice.ts';
+import {ResultCode} from '@/common/enums';
 
 type TBaseQuery = BaseQueryFn<
     string | FetchArgs,
@@ -17,24 +18,25 @@ type TBaseQuery = BaseQueryFn<
  * @returns A modified version of the baseQuery with added data validation.
  */
 export const baseQueryWithZodValidation: (baseQuery: TBaseQuery) => TBaseQuery =
-    (baseQuery: TBaseQuery) => async (args, api, extraOptions) => {
-        const returnValue = await baseQuery(args, api, extraOptions)
+  (baseQuery: TBaseQuery) => async (args, api, extraOptions) => {
 
-        const zodSchema = extraOptions?.dataSchema
+    const returnValue = await baseQuery(args, api, extraOptions)
 
-        const { data } = returnValue
+    const zodSchema = extraOptions?.dataSchema
 
-        if (data && zodSchema) {
-            try {
-                zodSchema.parse(data)
-            } catch (error) {
-                if (error instanceof z.ZodError) {
-                    console.table(error.issues)
-                    api.dispatch(setAppErrorAC({ error: "Zod error. Смотри консоль" }))
-                }
-                throw error
-            }
+    const { data } = returnValue
+
+    if (data && data.resultCode === ResultCode.Success && zodSchema) {
+      try {
+        zodSchema.parse(data)
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          console.table(error.issues)
+          api.dispatch(setAppErrorAC({ error: "Zod error. Смотри консоль" }))
         }
-
-        return returnValue
+        throw error
+      }
     }
+
+    return returnValue
+  }

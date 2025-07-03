@@ -36,7 +36,7 @@ export type UpdateTaskModel = {
 
 export const taskOperationResponseSchema = baseResponseSchema(
     z.object({
-      item: domainTaskSchema.optional(),
+      item: domainTaskSchema,
     }),
 )
 export type TaskOperationResponse = z.infer<typeof taskOperationResponseSchema>

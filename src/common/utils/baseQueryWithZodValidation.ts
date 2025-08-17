@@ -26,7 +26,8 @@ export const baseQueryWithZodValidation: (baseQuery: TBaseQuery) => TBaseQuery =
 
     const { data } = returnValue
 
-    if (data && data.resultCode === ResultCode.Success && zodSchema) {
+    // @ts-ignore
+      if (data && data.resultCode === ResultCode.Success && zodSchema) {
       try {
         zodSchema.parse(data)
       } catch (error) {

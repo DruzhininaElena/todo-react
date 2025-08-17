@@ -42,7 +42,9 @@ export const handleError = (
   if ((result.data as { resultCode: ResultCode }).resultCode === ResultCode.Error) {
     const messages = (result.data as { messages: string[] }).messages
     error = messages.length ? messages[0] : error
-    api.dispatch(setAppErrorAC({ error }))
+    if (messages[0] !== 'You are not authorized') {
+      api.dispatch(setAppErrorAC({ error }))
+    }
   }
 
   if ((result.data as { resultCode: ResultCode }).resultCode === ResultCode.Captcha) {
